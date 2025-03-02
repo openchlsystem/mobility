@@ -1,0 +1,780 @@
+/* ==============================
+   Global Styles
+   ============================== */
+   body {
+    font-family: "Arial", sans-serif;
+    background-color: #f8f9fa; /* Light Gray Background */
+    color: black;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Headings */
+  h1, h2, h3 {
+    color: #367588; /* Teal */
+    font-weight: bold;
+  }
+  
+  h4, h5, h6 {
+    color: black;
+    font-weight: bold;
+  }
+  
+  /* Links */
+  a {
+    color: #367588;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #2d5f70; /* Darker Teal */
+    text-decoration: underline;
+  }
+  /* ==============================
+   Navbar Styling
+   ============================== */
+
+.navbar {
+  background-color: white !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand img {
+  height: 70px;
+  width: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-brand img:hover {
+  transform: scale(1.05);
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav .nav-item {
+  margin: 0 10px;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1rem;
+  font-weight: bold;
+  color: black !important;
+  text-transform: uppercase;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #367588 !important;
+}
+
+/* Profile Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  font-size: 1rem;
+  font-weight: bold;
+  color: black !important;
+  background: none;
+  border: none;
+  padding: 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.dropdown-toggle:hover {
+  color: #367588 !important;
+}
+
+.dropdown-menu {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.dropdown-item {
+  font-weight: bold;
+  padding: 12px;
+  transition: background 0.3s ease-in-out;
+}
+
+.dropdown-item:hover {
+  background-color: #367588;
+  color: white !important;
+}
+
+/* "Book a Ride" Button */
+.book-btn {
+  background-color: #367588;
+  color: white !important;
+  border-radius: 25px;
+  padding: 10px 20px;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.book-btn:hover {
+  background-color: #2d5f70;
+  transform: scale(1.05);
+}
+
+/* Mobile Navbar */
+@media (max-width: 992px) {
+  .navbar-nav {
+      text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+      margin: 10px 0;
+  }
+
+  .dropdown-menu {
+      text-align: center;
+  }
+}
+
+/* Dropdown Animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+
+  
+  /* ==============================
+     CTA Section
+     ============================== */
+  .cta-section {
+    background-color: white;
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  .book-btn {
+    background-color: #367588 !important;
+    border: none;
+    color: white !important;
+    border-radius: 30px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 1.2rem;
+    padding: 10px 30px;
+  }
+  
+  .book-btn:hover {
+    background-color: #2d5f70 !important;
+    transform: scale(1.05);
+  }
+  
+  /* ==============================
+     Footer Styling
+     ============================== */
+  .footer-section {
+    background-color: #367588;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+  }
+  
+  .footer-link {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 8px;
+  }
+  
+  .footer-link:hover {
+    text-decoration: underline;
+    color: #ddd !important;
+  }
+  
+  /* Social Media Icons */
+  .social-icon {
+    color: white !important;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .social-icon:hover {
+    color: #ddd !important;
+    transform: scale(1.1);
+  }
+  
+  /* ==============================
+     Form Styling (General)
+     ============================== */
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #367588;
+    padding: 10px;
+  }
+  
+  .form-control:focus {
+    border-color: #2d5f70;
+    box-shadow: 0 0 5px rgba(54, 117, 136, 0.5);
+  }
+  
+  /* ==============================
+     Scheduling Page Styles
+     ============================== */
+  .scheduling-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .subtitle {
+    color: black;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Styling */
+  .scheduling-form {
+    text-align: left;
+    padding: 15px;
+  }
+  
+  .scheduling-form label {
+    display: block;
+    font-weight: bold;
+    color: #367588;
+    margin-bottom: 5px;
+  }
+  
+  .scheduling-form input,
+  .scheduling-form select,
+  .scheduling-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #367588;
+    border-radius: 4px;
+  }
+  
+  /* Proper Checkbox Alignment */
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .checkbox-group input {
+    transform: scale(1.2);
+    margin-right: 8px;
+  }
+  
+  /* Privacy Policy Link */
+  .privacy-link {
+    color: #367588;
+    text-decoration: underline;
+  }
+  
+  .privacy-link:hover {
+    color: #2d5f70;
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    background-color: #367588;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 100%;
+  }
+  
+  .submit-btn:hover {
+    background-color: #2d5f70;
+  }
+  
+  /* ==============================
+     Authentication (Login & Signup)
+     ============================== */
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+  }
+  
+  .auth-form {
+    width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .auth-form h1 {
+    color: #367588;
+    margin-bottom: 20px;
+  }
+  
+  .auth-form label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    color: #367588;
+    margin-top: 10px;
+  }
+  
+  .auth-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #367588;
+    border-radius: 4px;
+  }
+  
+  /* Logout Button */
+  .logout-btn {
+    background-color: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .logout-btn:hover {
+    background-color: darkred;
+  }
+  
+  /* Careers Page */
+  .careers-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .no-vacancies {
+    color: red;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  /* Terms & Privacy Policy */
+  .terms-container, .privacy-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  /* Insurance & Payment */
+  .insurance-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .insurance-section {
+    margin-bottom: 20px;
+  }
+  
+  /* ==============================
+     Responsive Design
+     ============================== */
+  @media (max-width: 768px) {
+    .company-name {
+      font-size: 1.5rem;
+    }
+  
+    .navbar-nav .nav-link {
+      font-size: 0.9rem;
+    }
+  
+    .book-btn {
+      font-size: 1rem;
+      padding: 8px 20px;
+    }
+  
+    .checkbox-group {
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+  }
+  /* ==============================
+   User & Admin Profile Styling
+   ============================== */
+.profile-container, .admin-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-details, .admin-container ul {
+  text-align: left;
+}
+
+.profile-details p, .admin-container ul li {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.schedule-btn, .edit-btn, .logout-btn, .confirm-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.schedule-btn {
+  background-color: #367588;
+  color: white;
+}
+
+.edit-btn {
+  background-color: #367588;
+  color: white;
+}
+
+.logout-btn {
+  background-color: red;
+  color: white;
+}
+
+.confirm-btn {
+  background-color: green;
+  color: white;
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+}
+/* ==============================
+   User Dashboard Styling
+   ============================== */
+   .user-dashboard {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .user-dashboard h1 {
+    color: #367588;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .user-dashboard .welcome-message {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+  }
+  
+  /* Vertically Stacked Dashboard Cards */
+  .dashboard-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .dashboard-card {
+    width: 100%;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .dashboard-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .dashboard-card a {
+    color: #367588;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .dashboard-card a:hover {
+    text-decoration: underline;
+    color: #2d5f70;
+  }
+  
+  /* Logout Button */
+  .logout-btn {
+    background-color: #367588;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .logout-btn:hover {
+    background-color: #2d5f70;
+  }
+  
+  /* ==============================
+     Responsive Design
+     ============================== */
+  @media (max-width: 768px) {
+    .dashboard-card {
+      width: 100%;
+    }
+  }
+ /* ==============================
+   Admin Dashboard Styling
+   ============================== */
+
+.admin-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.admin-card {
+  background-color: #367588;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+}
+
+.admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-btn {
+  background-color: #367588;
+  color: white;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border-radius: 5px;
+}
+
+.admin-btn:hover {
+  background-color: #2d5f70;
+}
+
+/* ==============================
+   Admin Tables
+   ============================== */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.admin-table th, .admin-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.admin-table th {
+  background-color: #367588;
+  color: white;
+}
+
+.confirm-btn {
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* ==============================
+ Manage Users Page Styling
+ ============================== */
+.manage-users {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.manage-users h1 {
+  color: #367588;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* User Table */
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.users-table th, .users-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.users-table th {
+  background-color: #367588;
+  color: white;
+  font-weight: bold;
+}
+
+.users-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.users-table tr:hover {
+  background-color: #ddd;
+}
+
+/* ==============================
+ Manage Rides Page Styling
+ ============================== */
+.manage-rides {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.manage-rides h1 {
+  color: #367588;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Ride Table */
+.ride-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.ride-table th, .ride-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.ride-table th {
+  background-color: #367588;
+  color: white;
+  font-weight: bold;
+}
+
+.ride-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.ride-table tr:hover {
+  background-color: #ddd;
+}
+
+/* Confirm & Delete Buttons */
+.confirm-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.confirm-btn:hover {
+  background-color: #218838;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+}
+
+/* ==============================
+ Responsive Design
+ ============================== */
+@media (max-width: 768px) {
+  .admin-cards {
+      flex-direction: column;
+  }
+
+  .users-table, .ride-table {
+      font-size: 0.9rem;
+  }
+
+  .confirm-btn, .delete-btn {
+      font-size: 0.9rem;
+  }
+}

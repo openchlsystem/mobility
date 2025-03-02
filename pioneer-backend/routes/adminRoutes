@@ -1,0 +1,15 @@
+const express = require("express");
+const router = express.Router();
+const adminController = require("../controllers/adminController");
+const authMiddleware = require("../middleware/authMiddleware");
+
+// ✅ Get all users (Admin only)
+router.get("/users", authMiddleware, adminController.getAllUsers);
+
+// ✅ Get all rides with user details
+router.get("/rides", authMiddleware, adminController.getAllRides);
+
+// ✅ Confirm a ride
+router.put("/confirm-ride/:rideId", authMiddleware, adminController.confirmRide);
+
+module.exports = router;

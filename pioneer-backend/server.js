@@ -4,18 +4,24 @@ const dotenv = require("dotenv");
 const pool = require("./config/dbConfig");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-const rideRoutes = require("./routes/rideRoutes"); // ✅ Added rideRoutes
+const rideRoutes = require("./routes/rideRoutes"); // ✅ Ride routes added
 
 dotenv.config();
 const app = express();
 
-app.use(cors());
+// ✅ Configure CORS properly
+app.use(cors({
+    origin: "http://localhost:3000", // Change this to match your frontend URL
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Authorization"
+}));
+
 app.use(express.json());
 
 // ✅ Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
-app.use("/api/rides", rideRoutes); // ✅ New route for ride scheduling
+app.use("/api/rides", rideRoutes);
 
 // ✅ Default route to check if the server is running
 app.get("/", (req, res) => {
@@ -25,6 +31,12 @@ app.get("/", (req, res) => {
 // ✅ Handle invalid API routes
 app.use((req, res) => {
     res.status(404).json({ error: "Route not found" });
+});
+
+// ✅ Centralized error handling middleware
+app.use((err, req, res, next) => {
+    console.error("🔥 Server Error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
 });
 
 // ✅ Start the server

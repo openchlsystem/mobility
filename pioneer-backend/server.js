@@ -4,14 +4,14 @@ const dotenv = require("dotenv");
 const pool = require("./config/dbConfig");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-const rideRoutes = require("./routes/rideRoutes"); // ✅ Ride routes added
+const rideRoutes = require("./routes/rideRoutes");
 
 dotenv.config();
 const app = express();
 
-// ✅ Configure CORS properly
+// ✅ Configure CORS properly to allow frontend access
 app.use(cors({
-    origin: ["http://18.177.175.202","http://localhost:3000"], // Change this to match your frontend URL
+    origin: ["http://18.177.175.202", "http://localhost:3000"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Content-Type, Authorization"
 }));
@@ -35,12 +35,12 @@ app.use((req, res) => {
 
 // ✅ Centralized error handling middleware
 app.use((err, req, res, next) => {
-    console.error("🔥 Server Error:", err);
+    console.error("Server Error:", err);
     res.status(500).json({ error: "Internal Server Error" });
 });
 
-// ✅ Start the server
+// ✅ Start the server and listen on all interfaces
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`✅ Server running on port ${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`✅ Server running on port ${PORT} and accessible externally`);
 });

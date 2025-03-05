@@ -9,7 +9,7 @@ const REMOTE_IP = process.env.REACT_APP_API_IP || "18.177.175.202"; // Replace w
 
 const BASE_URL = isLocalhost
   ? "http://localhost:5000/api" // Local development API
-  : `https://${REMOTE_IP}/api`; // Use HTTPS for production
+  : `http://${REMOTE_IP}/api`; // Use HTTPS for production
 
 // ✅ Create a single Axios instance
 const api = axios.create({

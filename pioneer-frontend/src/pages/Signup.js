@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // ✅ Use central axios instance
+import axios from "./axios.js"; // ✅ Use central axios instance
 import "./styles.css";
 
 function Signup() {

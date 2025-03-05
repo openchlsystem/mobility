@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../axios"; // Import Axios instance
+import api from "./axios.js"; // Import Axios instance
 import "./styles.css";
 
 function Scheduling() {

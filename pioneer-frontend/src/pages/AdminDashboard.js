@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../axios"; // ✅ Use axios.js
+import api from "./axios.js"; // ✅ Use axios.js
 import "./styles.css";
 
 function AdminDashboard() {

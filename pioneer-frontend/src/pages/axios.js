@@ -1,10 +1,14 @@
 import axios from "axios";
 
-// ✅ Define base URL dynamically
-const BASE_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost:5000/api"
-    : "http://18.177.175.202:5000/api"; // Replace with your EC2 IP
+// ✅ Detect if running on localhost
+const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+
+// ✅ Use dynamic IP if available, fallback to a predefined one
+const REMOTE_IP = process.env.REACT_APP_API_IP || "18.177.175.202"; // Replace with your EC2 IP or environment variable
+
+const BASE_URL = isLocalhost
+  ? "http://localhost:5000/api"
+  : `http://${REMOTE_IP}:5000/api`; // Use dynamic IP if set
 
 // ✅ Create a single Axios instance
 const api = axios.create({

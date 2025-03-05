@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../axios";
 import "./styles.css";
 
 function ManageRides() {
   const [rides, setRides] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/admin/rides", {
-        headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` },
-      })
+    api
+      .get("/admin/rides")
       .then((response) => setRides(response.data))
       .catch((error) => console.error("Error fetching rides:", error));
   }, []);
 
   const confirmRide = (rideId) => {
-    axios
-      .put(`http://localhost:5000/api/admin/confirm-ride/${rideId}`, {}, {
-        headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` },
-      })
+    api
+      .put(`/admin/confirm-ride/${rideId}`)
       .then(() => {
         setRides(rides.map((ride) => ride.id === rideId ? { ...ride, status: "Confirmed" } : ride));
       })

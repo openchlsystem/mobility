@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../axios";
 import "./styles.css";
 
 function ManageUsers() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/admin/users", {
-        headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` },
-      })
+    api
+      .get("/admin/users")
       .then((response) => setUsers(response.data))
       .catch((error) => console.error("Error fetching users:", error));
   }, []);

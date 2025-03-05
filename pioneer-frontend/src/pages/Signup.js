@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // ✅ Import axios for API calls
+import axios from "axios"; // ✅ Use central axios instance
 import "./styles.css";
 
 function Signup() {
@@ -25,14 +25,15 @@ function Signup() {
     setMessage("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/signup", formData);
+      const response = await axios.post("/auth/signup", formData);
       setMessage("Account created successfully! Redirecting to login...");
       
       setTimeout(() => {
         navigate("/login");
       }, 1500);
     } catch (error) {
-      setError(error.response?.data?.error || "Signup failed. Try again.");
+      console.error("Signup error:", error);
+      setError(error.response?.data?.message || "Signup failed. Try again.");
     }
   };
 

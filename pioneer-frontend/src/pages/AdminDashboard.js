@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import api from "../axios"; // ✅ Use axios.js
 import "./styles.css";
 
 function AdminDashboard() {
@@ -8,21 +8,11 @@ function AdminDashboard() {
   const [ridesCount, setRidesCount] = useState(0);
 
   useEffect(() => {
-    const token = sessionStorage.getItem("userToken");
-
-    // ✅ Fetch total users count
-    axios
-      .get("http://localhost:5000/api/admin/users", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    api.get("/admin/users")
       .then((response) => setUsersCount(response.data.length))
       .catch((error) => console.error("Error fetching users:", error));
 
-    // ✅ Fetch total rides count
-    axios
-      .get("http://localhost:5000/api/admin/rides", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    api.get("/admin/rides")
       .then((response) => setRidesCount(response.data.length))
       .catch((error) => console.error("Error fetching rides:", error));
   }, []);
@@ -33,20 +23,17 @@ function AdminDashboard() {
       <p className="admin-intro">Manage users and scheduled rides efficiently.</p>
 
       <div className="admin-dashboard">
-        <div className="admin-card">
-          <h3>Total Users</h3>
-          <p>{usersCount}</p>
-        </div>
+        {/* ✅ Updated Manage Users Card */}
+        <Link to="/manage-users" className="admin-card">
+          <h3>Manage Users</h3>
+          <p>Total Users: <strong>{usersCount}</strong></p>
+        </Link>
 
-        <div className="admin-card">
-          <h3>Total Rides</h3>
-          <p>{ridesCount}</p>
-        </div>
-      </div>
-
-      <div className="admin-actions">
-        <Link to="/manage-users" className="admin-btn">Manage Users</Link>
-        <Link to="/manage-rides" className="admin-btn">Manage Rides</Link>
+        {/* ✅ Manage Rides Card with Total Rides */}
+        <Link to="/manage-rides" className="admin-card">
+          <h3>Manage Rides</h3>
+          <p>Total Rides: <strong>{ridesCount}</strong></p>
+        </Link>
       </div>
     </div>
   );

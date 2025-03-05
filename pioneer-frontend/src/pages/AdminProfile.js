@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../axios"; // ✅ Use axios.js
 import "./styles.css";
 
 function AdminProfile() {
@@ -7,36 +7,23 @@ function AdminProfile() {
   const [rides, setRides] = useState([]);
 
   useEffect(() => {
-    const token = sessionStorage.getItem("userToken");
+    api.get("/admin/users")
+      .then(response => setUsers(response.data))
+      .catch(error => console.error("Error fetching users:", error));
 
-    // ✅ Fetch all users
-    axios.get("http://localhost:5000/api/admin/users", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(response => setUsers(response.data))
-    .catch(error => console.error("Error fetching users:", error));
-
-    // ✅ Fetch all rides
-    axios.get("http://localhost:5000/api/admin/rides", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(response => setRides(response.data))
-    .catch(error => console.error("Error fetching rides:", error));
+    api.get("/admin/rides")
+      .then(response => setRides(response.data))
+      .catch(error => console.error("Error fetching rides:", error));
   }, []);
 
-  // ✅ Confirm a ride & update status
   const confirmRide = (rideId) => {
-    const token = sessionStorage.getItem("userToken");
-
-    axios.put(`http://localhost:5000/api/rides/confirm/${rideId}`, {}, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(() => {
-      setRides(rides.map(ride => 
-        ride.id === rideId ? { ...ride, status: "Confirmed" } : ride
-      ));
-    })
-    .catch(error => console.error("Error confirming ride:", error));
+    api.put(`/rides/confirm/${rideId}`)
+      .then(() => {
+        setRides(rides.map(ride =>
+          ride.id === rideId ? { ...ride, status: "Confirmed" } : ride
+        ));
+      })
+      .catch(error => console.error("Error confirming ride:", error));
   };
 
   return (

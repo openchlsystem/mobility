@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../axios";
 import "./styles.css";
 
 function RideHistory() {
   const [rides, setRides] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/rides/user", { 
-      headers: { Authorization: `Bearer ${sessionStorage.getItem("userToken")}` }
-    })
+    api.get("/rides/user")
       .then(response => setRides(response.data))
       .catch(error => console.error("Error fetching ride history:", error));
   }, []);

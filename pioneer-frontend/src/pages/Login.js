@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // ✅ Import axios for API calls
+import axios from "../axios"; // ✅ Use central axios instance
 import "./styles.css";
 
 function Login() {
@@ -14,8 +14,8 @@ function Login() {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", { email, password });
-      
+      const response = await axios.post("/auth/login", { email, password });
+
       sessionStorage.setItem("userToken", response.data.token); // ✅ Store token
       sessionStorage.setItem("user", JSON.stringify(response.data.user)); // ✅ Store user details
 
@@ -25,7 +25,8 @@ function Login() {
         navigate("/user-dashboard"); // ✅ Redirect user to User Dashboard
       }
     } catch (error) {
-      setError(error.response?.data?.error || "Invalid email or password.");
+      console.error("Login error:", error);
+      setError(error.response?.data?.message || "Invalid email or password.");
     }
   };
 

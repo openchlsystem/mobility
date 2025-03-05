@@ -1,14 +1,15 @@
 import axios from "axios";
 
-// ✅ Detect if running on localhost
-const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+// Detect current hostname
+const hostname = window.location.hostname;
 
-// ✅ Use dynamic IP if available, fallback to a predefined one
-const REMOTE_IP = process.env.REACT_APP_API_IP || "18.177.175.202"; // Replace with your EC2 IP or environment variable
+// Define API URLs based on environment
+const isLocalhost = ["localhost", "127.0.0.1"].includes(hostname);
+const REMOTE_IP = process.env.REACT_APP_API_IP || "18.177.175.202"; // Replace with your EC2/Public IP
 
 const BASE_URL = isLocalhost
-  ? "http://localhost:5000/api"
-  : `http://${REMOTE_IP}:5000/api`; // Use dynamic IP if set
+  ? "http://localhost:5000/api" // Local development API
+  : `https://${REMOTE_IP}/api`; // Use HTTPS for production
 
 // ✅ Create a single Axios instance
 const api = axios.create({
@@ -18,7 +19,7 @@ const api = axios.create({
   },
 });
 
-// ✅ Request Interceptor (Add Token Automatically)
+// ✅ Request Interceptor (Attach Token)
 api.interceptors.request.use(
   (config) => {
     const token = sessionStorage.getItem("userToken");

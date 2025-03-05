@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "./axios.js"; // ✅ Use central axios instance
+import api from "./axios.js"; // ✅ Use central axios instance
 import "./styles.css";
 
 function Login() {
@@ -14,7 +14,7 @@ function Login() {
     setError("");
 
     try {
-      const response = await axios.post("/auth/login", { email, password });
+      const response = await api.post("/auth/login", { email, password });
 
       sessionStorage.setItem("userToken", response.data.token); // ✅ Store token
       sessionStorage.setItem("user", JSON.stringify(response.data.user)); // ✅ Store user details

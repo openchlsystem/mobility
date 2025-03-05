@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "./axios.js"; // ✅ Use central axios instance
+import api from "./axios.js"; // ✅ Use the centralized Axios instance
 import "./styles.css";
 
 function Signup() {
@@ -21,19 +21,18 @@ function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError("");
-    setMessage("");
+    setError(""); // Clear errors before making the request
 
     try {
-      const response = await axios.post("/auth/signup", formData);
+      const response = await api.post("/auth/signup", formData); // ✅ Using `api` instead of `axios`
       setMessage("Account created successfully! Redirecting to login...");
-      
+
       setTimeout(() => {
         navigate("/login");
       }, 1500);
     } catch (error) {
       console.error("Signup error:", error);
-      setError(error.response?.data?.message || "Signup failed. Try again.");
+      setError(error.response?.data?.message || "Signup failed. Please try again.");
     }
   };
 

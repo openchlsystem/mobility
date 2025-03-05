@@ -7,9 +7,13 @@ const hostname = window.location.hostname;
 const isLocalhost = ["localhost", "127.0.0.1"].includes(hostname);
 const REMOTE_IP = process.env.REACT_APP_API_IP || "18.177.175.202"; // Replace with your EC2/Public IP
 
-const BASE_URL = isLocalhost
-  ? "http://localhost:5000/api" // Local development API
-  : `http://${REMOTE_IP}/api`; // Use HTTPS for production
+let BASE_URL;
+
+if (isLocalhost) {
+  BASE_URL = "http://localhost:5000/api"; // Local development API
+} else {
+  BASE_URL = `http://${REMOTE_IP}:5000/api`; // Use HTTP for production with the correct port
+}
 
 // ✅ Create a single Axios instance
 const api = axios.create({

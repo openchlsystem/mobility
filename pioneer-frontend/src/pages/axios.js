@@ -7,9 +7,9 @@ const hostname = window.location.hostname;
 const isLocalhost = hostname === "localhost" || hostname === "127.0.0.1";
 
 // define the remote IP address based  the current production environment
-const REMOTE_IP = window.location.host;
+const REMOTE_IP = '18.177.175.202';
 
-console.log ("i slogging thid",REMOTE_IP)
+
 let BASE_URL;
 if (isLocalhost) {
   BASE_URL = "http://localhost:5000/api"; // Local Development API

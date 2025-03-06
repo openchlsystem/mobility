@@ -4,11 +4,14 @@ import axios from "axios";
 const hostname = window.location.hostname;
 const REMOTE_IP = '18.177.175.202';
 
-// Check if the environment is localhost
+// Check if the environment is localhost or production based on hostname
 const isLocalhost = ['localhost', '127.0.0.1'].includes(hostname);
 
+// If you want to check NODE_ENV for production (React build process)
+const isProduction = process.env.NODE_ENV === "production";
+
 // Set BASE_URL based on environment
-const BASE_URL = isLocalhost
+const BASE_URL = isLocalhost || !isProduction
   ? "http://localhost:5000/api" // Local Development API
   : `http://${REMOTE_IP}:5000/api`; // Remote API for production
 

@@ -10,10 +10,11 @@ dotenv.config();
 const app = express();
 
 // ✅ Configure CORS properly
+const allowedOrigins = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(",") : ["*"];
 app.use(cors({
-    origin: "*", // Temporarily allow all origins, restrict later if needed
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Content-Type, Authorization"
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(express.json());
@@ -42,5 +43,5 @@ app.use((err, req, res, next) => {
 // ✅ Start the server and bind to 0.0.0.0
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => {
-    console.log(`✅ Server running on port ${PORT}`);
+    console.log(`✅ Server running on http://0.0.0.0:${PORT}`);
 });

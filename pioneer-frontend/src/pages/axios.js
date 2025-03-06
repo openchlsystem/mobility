@@ -1,31 +1,42 @@
 import axios from "axios";
 
+// Get current hostname and set REMOTE IP for production
 const hostname = window.location.hostname;
-const isLocalhost = ["localhost", "127.0.0.1"].includes(hostname);
-const REMOTE_IP = "18.177.175.202";
-// const BASE_URL = isLocalhost ? "http://localhost:5000/api" : `http://${REMOTE_IP}:5000/api`;
-const BASE_URL = isLocalhost ? "18.177.175.202" : `18.177.175.202`;
+const REMOTE_IP = '18.177.175.202';
 
+// Check if the environment is localhost
+const isLocalhost = ['localhost', '127.0.0.1'].includes(hostname);
+
+// Set BASE_URL based on environment
+const BASE_URL = isLocalhost
+  ? "http://localhost:5000/api" // Local Development API
+  : `http://${REMOTE_IP}:5000/api`; // Remote API for production
+
+// Create a single Axios instance
 const api = axios.create({
   baseURL: BASE_URL,
-  headers: { "Content-Type": "application/json" },
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
+// Request Interceptor: Attach Token if available
 api.interceptors.request.use(
   (config) => {
     const token = sessionStorage.getItem("userToken");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    console.log("[Axios Request]", config);
+    console.log("[Axios Request]", config); // Debugging log
     return config;
   },
   (error) => Promise.reject(error)
 );
 
+// Response Interceptor: Handle Responses and Errors
 api.interceptors.response.use(
   (response) => {
-    console.log("[Axios Response]", response);
+    console.log("[Axios Response]", response); // Debugging log
     return response;
   },
   (error) => {

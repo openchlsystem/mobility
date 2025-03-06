@@ -19,9 +19,9 @@ app.use(cors({
 app.use(express.json());
 
 // ✅ Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/rides", rideRoutes);
+app.use("./auth", authRoutes);
+app.use("./admin", adminRoutes);
+app.use("./rides", rideRoutes);
 
 // ✅ Default route to check if the server is running
 app.get("/", (req, res) => {

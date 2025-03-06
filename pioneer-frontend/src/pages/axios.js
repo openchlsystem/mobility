@@ -4,12 +4,18 @@ import axios from "axios";
 const hostname = window.location.hostname;
 
 // Define API URLs based on environment
-const isLocalhost = ["localhost", "127.0.0.1"].includes(hostname);
-const REMOTE_IP = process.env.REACT_APP_API_IP || "18.177.175.202"; // Replace with your EC2/Public IP
+const isLocalhost = hostname === "localhost" || hostname === "127.0.0.1";
+const REMOTE_IP = process.env.REACT_APP_API_IP || "18.177.175.202"; // Replace with EC2 Public IP
 
-const BASE_URL = isLocalhost
-  ? "http://localhost:5000/api" // Local development API
-  : `http://${REMOTE_IP}/api`; // Use HTTP unless HTTPS is configured
+let BASE_URL;
+
+if (isLocalhost) {
+  BASE_URL = "http://localhost:5000/api"; // Local Development API
+} else {
+  BASE_URL = `http://${REMOTE_IP}:5000/api`; // Ensure correct port in production
+}
+
+console.log(`🔹 Axios Base URL: ${BASE_URL}`); // Debugging
 
 // ✅ Create a single Axios instance
 const api = axios.create({
@@ -26,20 +32,23 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    console.log("[Axios Request]", config); // Debugging log
+    console.log("🚀 Axios Request:", config); // Debugging
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    console.error("❌ Axios Request Error:", error);
+    return Promise.reject(error);
+  }
 );
 
 // ✅ Response Interceptor (Handle Errors)
 api.interceptors.response.use(
   (response) => {
-    console.log("[Axios Response]", response); // Debugging log
+    console.log("✅ Axios Response:", response); // Debugging
     return response;
   },
   (error) => {
-    console.error("[Axios Error]", error.response?.data || error.message);
+    console.error("⚠️ Axios Error:", error.response?.data || error.message);
     return Promise.reject(error);
   }
 );

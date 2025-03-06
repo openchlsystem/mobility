@@ -3,7 +3,8 @@ import axios from "axios";
 const hostname = window.location.hostname;
 const isLocalhost = ["localhost", "127.0.0.1"].includes(hostname);
 const REMOTE_IP = "18.177.175.202";
-const BASE_URL = isLocalhost ? "http://localhost:5000/api" : `http://${REMOTE_IP}:5000/api`;
+// const BASE_URL = isLocalhost ? "http://localhost:5000/api" : `http://${REMOTE_IP}:5000/api`;
+const BASE_URL = isLocalhost ? "18.177.175.202" : `18.177.175.202`;
 
 const api = axios.create({
   baseURL: BASE_URL,

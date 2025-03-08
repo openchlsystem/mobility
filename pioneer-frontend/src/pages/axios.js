@@ -5,7 +5,7 @@ const hostname = window.location.hostname;
 
 // Define API URLs based on environment
 const isLocalhost = ["localhost", "127.0.0.1"].includes(hostname);
-const REMOTE_IP = process.env.REACT_APP_API_IP || "18.177.175.202"; // Replace with your EC2/Public IP
+const REMOTE_IP = process.env.REACT_APP_API_IP || "mobility.bitz-itc.com"; // Replace with your EC2/Public IP
 
 const BASE_URL = isLocalhost
   ? "http://localhost:5000/api" // Local development API

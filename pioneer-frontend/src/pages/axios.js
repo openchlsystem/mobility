@@ -1,17 +1,21 @@
 import axios from "axios";
 
-// Detect current hostname
+// Get current hostname and set REMOTE IP for production
 const hostname = window.location.hostname;
+const REMOTE_IP = 'mobility.bitz-itc.com';
 
-// Define API URLs based on environment
-const isLocalhost = ["localhost", "127.0.0.1"].includes(hostname);
-const REMOTE_IP = process.env.REACT_APP_API_IP || "mobility.bitz-itc.com"; // Replace with your EC2/Public IP
+// Check if the environment is localhost or production based on hostname
+const isLocalhost = ['localhost', '127.0.0.1'].includes(hostname);
 
-const BASE_URL = isLocalhost
-  ? "http://localhost:5000/api" // Local development API
-  : `https://${REMOTE_IP}/api`; // Use HTTPS for production
+// If you want to check NODE_ENV for production (React build process)
+const isProduction = process.env.NODE_ENV === "production";
 
-// ✅ Create a single Axios instance
+// Set BASE_URL based on environment
+const BASE_URL = isLocalhost || !isProduction
+  ? "http://localhost:5000/api" // Local Development API
+  : `http://${REMOTE_IP}/api`; // Remote API for production
+
+// Create a single Axios instance
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -19,7 +23,7 @@ const api = axios.create({
   },
 });
 
-// ✅ Request Interceptor (Attach Token)
+// Request Interceptor: Attach Token if available
 api.interceptors.request.use(
   (config) => {
     const token = sessionStorage.getItem("userToken");
@@ -32,7 +36,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// ✅ Response Interceptor (Handle Errors)
+// Response Interceptor: Handle Responses and Errors
 api.interceptors.response.use(
   (response) => {
     console.log("[Axios Response]", response); // Debugging log

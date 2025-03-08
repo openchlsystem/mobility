@@ -18,19 +18,19 @@ function Signup() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError(""); // Clear errors before making the request
+    setError("");
 
     try {
-      const response = await api.post("/auth/signup", formData); // ✅ Using `api` instead of `axios`
+      const response = await api.post("/auth/signup", formData);
+      console.log("Signup response for host:", response, window.location.hostname);
       setMessage("Account created successfully! Redirecting to login...");
 
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
+      setTimeout(() => navigate("/login"), 1500);
     } catch (error) {
+      console.log("Signup response for host:", window.location.hostname);
+
       console.error("Signup error:", error);
       setError(error.response?.data?.message || "Signup failed. Please try again.");
     }
